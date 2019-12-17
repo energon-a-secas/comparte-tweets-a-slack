@@ -1,0 +1,21 @@
+twitter:
+  config:
+    follow:
+      account0:
+      - "2546757852"
+      - "@DescuentosRata"
+  token:
+    consumer_key: ""
+    consumer_secret: ""
+    access_token: ""
+    access_token_secret: ""
+slack:
+  config:
+    name: "Persabot"
+    emoji: ":rat:"
+    channel: "#persa"
+  token:
+    test: "xoxb-*"
+    energon: "xoxb-*"
+
+
