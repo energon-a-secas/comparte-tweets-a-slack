@@ -16,9 +16,12 @@ class Finder
     @accounts.each do |account, v|
       threads << Thread.new do
         client = Twitter::Streaming::Client.new(@twitter_tokens)
-        p "Reading tuits from #{account}: #{v[1]}"
-        client.filter(follow: v[0]) do |tweet|
-          if tweet.is_a?(Twitter::Tweet) && !tweet.text.include?((v[1]).to_s)
+        user_id = v[0]
+        user_name = v[1]
+        content_filter = v[2]
+        p "Reading tuits from #{account}: #{user_name}"
+        client.filter(follow: user_id) do |tweet|
+          if tweet.is_a?(Twitter::Tweet) && tweet.text.include?(content_filter) && !tweet.text.include?(user_name)
             send_to_channel(@slack_token, tweet.uri)
           end
         end
