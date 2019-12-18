@@ -4,6 +4,19 @@ twitter:
       account0:
       - "2546757852"
       - "@DescuentosRata"
+      - "/(|)/"
+      account1:
+      - "4181934433"
+      - "@knasta_cl"
+      - "/(|)/"
+      account2:
+      - "73459349"
+      - "@metrodesantiago"
+      - "/(servicio|problema)/i"
+      account3:
+      - "19507704"
+      - "@ivolivares"
+      - "/(|)/"
   token:
     consumer_key: ""
     consumer_secret: ""
