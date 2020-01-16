@@ -3,12 +3,10 @@ twitter:
     follow:
       account0:
       - "2546757852"
-      - "@DescuentosRata"
-      - "/(|)/"
+      - "/(https|bit.ly)/"
       account1:
       - "4181934433"
-      - "@knasta_cl"
-      - "/(|)/"
+      - "https"
   token:
     consumer_key: ""
     consumer_secret: ""
