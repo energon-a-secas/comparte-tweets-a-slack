@@ -21,7 +21,7 @@ class Finder
         content_filter = v[2]
         p "Reading tuits from #{account}: #{user_name}"
         client.filter(follow: user_id) do |tweet|
-          if tweet.is_a?(Twitter::Tweet) && tweet.text.include?(content_filter) && !tweet.text.include?(user_name)
+          if tweet.is_a?(Twitter::Tweet) && !tweet.text.include?((v[2]).to_s)
             send_to_channel(@slack_token, tweet.uri)
           end
         end
@@ -31,4 +31,9 @@ class Finder
   end
 end
 
-Finder.new
+begin
+  Finder.new
+rescue
+  sleep(800)
+  retry
+end
