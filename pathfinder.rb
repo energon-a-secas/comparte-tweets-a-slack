@@ -4,7 +4,7 @@ require './social/core_slack'
 
 # Meh
 class DiscountFinder
-  def initialize(config_file = 'config.yml')
+  def initialize(config_file = 'conf.yml')
     data = YAML.load_file("#{Dir.pwd}/config/#{config_file}")
 
     @slack_token = data['slack']['token']['test']
