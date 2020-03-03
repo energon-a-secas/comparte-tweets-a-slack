@@ -1,33 +1,32 @@
 require 'twitter'
 require './config/yaml_config'
-require './social/web_slack'
+require './social/core_slack'
 
-class Finder
-  include WebSlack
+module CoreTwitter
   include Credentials
 
-  def initialize
+  def self.find_tweets
     load_credentials
-
+    begin
     threads = []
     @accounts.each do |account, v|
       threads << Thread.new do
         client = Twitter::Streaming::Client.new(@twitter_tokens)
-        p "Reading tuits from #{account}"
+        p "Reading tweets from #{account}"
         client.filter(follow: v[0]) do |tweet|
-          if tweet.is_a?(Twitter::Tweet) && !tweet.text.include?((v[2]).to_s)
-            send_to_channel(@slack_token, tweet.uri)
+          if tweet.user.id == v[0].to_i
+            slack = CoreSlack.new(@slack_token)
+            slack.send_to_channel(tweet.uri)
           end
         end
       end
+      threads.each(&:join)
     end
-    threads.each(&:join)
+    rescue StandardError
+      sleep(800)
+      retry
+    end
   end
 end
 
-begin
-  Finder.new
-rescue
-  sleep(800)
-  retry
-end
+CoreTwitter.find_tweets
