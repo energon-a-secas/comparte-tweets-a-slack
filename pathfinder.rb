@@ -1,13 +1,25 @@
 require 'twitter'
-require './config/yaml_config'
+require 'yaml'
 require './social/core_slack'
 
-module CoreTwitter
-  include Credentials
+# Meh
+class DiscountFinder
+  def initialize(config_file = 'config.yml')
+    data = YAML.load_file("#{Dir.pwd}/config/#{config_file}")
 
-  def self.find_tweets
-    load_credentials
-    begin
+    @slack_token = data['slack']['token']['test']
+    @twitter_tokens = { consumer_key: data['twitter']['token']['consumer_key'], consumer_secret: data['twitter']['token']['consumer_secret'], access_token: data['twitter']['token']['access_token'], access_token_secret: data['twitter']['token']['access_token_secret'] }
+    @accounts = data['twitter']['config']['follow']
+  end
+
+  def search
+    multi
+  rescue StandardError
+    sleep(800)
+    retry
+  end
+
+  def multi
     threads = []
     @accounts.each do |account, v|
       threads << Thread.new do
@@ -22,11 +34,8 @@ module CoreTwitter
       end
       threads.each(&:join)
     end
-    rescue StandardError
-      sleep(800)
-      retry
-    end
   end
 end
 
-CoreTwitter.find_tweets
+deals = DiscountFinder.new
+deals.search
