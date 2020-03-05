@@ -1,13 +1,12 @@
-require './core_twitter.rb'
-require './credentials'
+require './social/core_twitter.rb'
 
-class Pathfinder < Credentials
+class Pathfinder
   def self.twitter
     threads = []
-    twitter_account.each do |a, d|
+    ['73459349', '1187606581363531776'].each do |v|
       threads << Thread.new do
         deals = CoreTwitter.new
-        deals.streaming(a, d)
+        deals.streaming(v)
       end
     end
     threads.each(&:join)

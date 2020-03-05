@@ -13,11 +13,12 @@ class CoreTwitter < Credentials
     slack.send_to_channel(url)
   end
 
-  def streaming(account, ignore = '_+!')
+  def streaming(account, pattern = '(.*)', filter = '^(RT @|@)')
     print "Reading tweets from #{account}"
     @client.filter(follow: account) do |tweet|
-      if tweet.user.id == account.to_i && tweet.text.match(ignore).nil?
-        share_url(tweet.url)
+      text = tweet.text
+      if tweet.user.id == account.to_i && text.match(pattern) && text.match(filter).nil?
+          share_url(tweet.url)
       end
     end
   rescue StandardError
