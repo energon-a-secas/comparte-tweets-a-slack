@@ -18,7 +18,7 @@ class CoreTwitter < Credentials
     @client.filter(follow: account) do |tweet|
       text = tweet.text
       if tweet.user.id == account.to_i && text.match(pattern) && text.match(filter).nil?
-          share_url(tweet.url)
+        share_url(tweet.url)
       end
     end
   rescue StandardError
