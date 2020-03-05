@@ -1,14 +1,16 @@
 require 'slack-ruby-client'
+require './credentials'
 
-# New
-class CoreSlack
-  def initialize(token)
+# Class for all interactions related to Slack
+class CoreSlack < Credentials
+
+  def initialize(token = nil)
     Slack.configure do |config|
-      config.token = token
+      config.token = token.nil? ? slack_token : token
       config.raise 'Missing token' unless config.token
     end
 
-    @client = Slack::Web::Client.new
+    @client ||= Slack::Web::Client.new
   end
 
   def private(user)
