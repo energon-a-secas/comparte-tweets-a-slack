@@ -13,12 +13,17 @@ class CoreSlack < Credentials
     @client ||= Slack::Web::Client.new
   end
 
-  def private(user)
+  def direct_message_id(user)
     dm = @client.conversations_open users: user
     dm.channel.id
   end
 
-  def send_to_channel(text, channel = '#persa', icon_emoji = ':rat:', username = 'Persiabot')
+  def send_direct_message(text, user)
+    dm = direct_message_id(user)
+    send_channel_message(text, dm)
+  end
+
+  def send_channel_message(text, channel = '#hq-alerts', icon_emoji = ':enerbot:', username = 'Pathfinder')
     @client.chat_postMessage channel: channel,
                              icon_emoji: icon_emoji,
                              username: username,
