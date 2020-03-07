@@ -24,7 +24,7 @@ class CoreTwitter < Credentials
   end
 
   def streaming(account, pattern = '(.*)', filter = '^(RT @|@)')
-    print "Reading tweets from #{account}"
+    puts "Reading tweets from #{account}"
     @client.filter(follow: account) do |tweet|
       text = tweet.text
       if tweet.user.id == account.to_i && text.match(pattern) && text.match(filter).nil?
