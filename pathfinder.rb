@@ -7,7 +7,7 @@ class Pathfinder < Credentials
     @accounts = twitter_follow
   end
 
-  def self.twitter
+  def follow
     threads = []
     @accounts.each do |account, _p|
       threads << Thread.new do
@@ -21,4 +21,4 @@ class Pathfinder < Credentials
   end
 end
 
-Pathfinder.new
+Pathfinder.new.follow
