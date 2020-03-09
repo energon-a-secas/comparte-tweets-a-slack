@@ -11,7 +11,7 @@ class CoreTwitter < Credentials
 
   def to_slack
     slack = CoreSlack.new
-    slack.send_channel_message(@tweet.url)
+    slack.send_channel_message(@tweet)
   end
 
   def share_tweet
@@ -32,12 +32,14 @@ class CoreTwitter < Credentials
         share_tweet
       end
     end
-  rescue StandardError
-    sleep(800)
-    retry
-  end
 
-  def from_location(coordinates)
-    p coordinates
+  # rescue JSON::ParserError => e
+  #   print e.message
+  #   sleep 30
+  #   retry
+
+  rescue Twitter::Error::TooManyRequests => e
+    sleep e.rate_limit.reset_in + 1
+    retry
   end
 end
