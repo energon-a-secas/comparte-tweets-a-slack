@@ -13,6 +13,11 @@ class Credentials
     credentials['slack']['tokens']['prod']
   end
 
+  def slack_users
+    credentials = load
+    credentials['slack']['users']
+  end
+
   def twitter_token
     credentials = load
     twitter = credentials['twitter']['config']['tokens']
