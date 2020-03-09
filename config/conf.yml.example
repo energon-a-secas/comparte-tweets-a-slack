@@ -1,24 +1,23 @@
+---
 twitter:
   config:
     follow:
-      account0:
-      - "2546757852"
-      - "/(https|bit.ly)/"
-      account1:
-      - "4181934433"
-      - "https"
-  token:
-    consumer_key: ""
-    consumer_secret: ""
-    access_token: ""
-    access_token_secret: ""
+      account-id-1:
+        - "/(.*)/"
+      account-id-2:
+        - "/(.*)/"
+    tokens:
+      consumer_key: ""
+      consumer_secret: ""
+      access_token: ""
+      access_token_secret: ""
 slack:
   config:
-    name: "Persabot"
-    emoji: ":rat:"
-    channel: "#persa"
-  token:
-    test: "xoxb-*"
-    energon: "xoxb-*"
-
-
+    name: "Pathfinder"
+    emoji: ":pathfinder:"
+    channel: "#hq-alerts"
+  tokens:
+    prod: ""
+  users:
+      user-id-1:
+        - "(L1|L5)"
