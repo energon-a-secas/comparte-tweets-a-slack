@@ -1,16 +1,24 @@
-require './social/core_twitter.rb'
+require './social/core_twitter'
+require './credentials'
 
-class Pathfinder
-  def self.twitter
+# Multi thread following
+class Pathfinder < Credentials
+  def initialize
+    @accounts = twitter_follow
+  end
+
+  def follow
     threads = []
-    ['73459349', '1187606581363531776'].each do |v|
+    @accounts.each do |account, _p|
       threads << Thread.new do
-        deals = CoreTwitter.new
-        deals.streaming(v)
+        t = CoreTwitter.new
+        t.streaming(account)
       end
     end
     threads.each(&:join)
+  rescue SignalException => e
+    p e
   end
 end
 
-Pathfinder.twitter
+Pathfinder.new.follow
