@@ -14,7 +14,7 @@ twitter:
 slack:
   config:
     name: "Pathfinder"
-    emoji: ":pathfinder:"
+    emoji: "https://i.imgur.com/btEyTkf.png"
     channel: "#hq-alerts"
   tokens:
     prod: ""

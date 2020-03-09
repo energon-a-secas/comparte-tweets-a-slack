@@ -23,7 +23,7 @@ class CoreSlack < Credentials
     send_channel_message(text, dm)
   end
 
-  def send_channel_message(text, channel = '#hq-alerts', icon_url = 'https://i.imgur.com/IKmVGw7.png', username = 'Pathfinder')
+  def send_channel_message(text, channel = '#hq-alerts', icon_url = 'https://i.imgur.com/btEyTkf.png', username = 'Pathfinder')
     @client.chat_postMessage channel: channel,
                              icon_url: icon_url,
                              username: username,
