@@ -13,7 +13,7 @@ class CoreTwitter < Credentials
     slack = CoreSlack.new
     slack.send_channel_message(@tweet.url)
     slack_users.each do |u, f|
-      slack.send_direct_message(@tweet.url, u) if @tweet.text.match(f[0])
+      slack.send_direct_message(@tweet.text, u) if @tweet.text.match(f[0])
     end
   end
 
@@ -40,6 +40,10 @@ class CoreTwitter < Credentials
   #   print e.message
   #   sleep 30
   #   retry
+  rescue Twitter::Streaming::DeletedTweet => e
+    p e.message
+    sleep 30
+    retry
   rescue Twitter::Error::TooManyRequests => e
     sleep e.rate_limit.reset_in + 1
     retry
