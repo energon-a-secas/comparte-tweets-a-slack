@@ -16,6 +16,9 @@ class CoreSlack < Credentials
   def direct_message_id(user)
     dm = @client.conversations_open users: user
     dm.channel.id
+  rescue Slack::Web::Api::Errors::SlackError => e
+    # print 'User not found'
+    false
   end
 
   def send_direct_message(text, user)
@@ -28,5 +31,9 @@ class CoreSlack < Credentials
                              icon_url: icon_url,
                              username: username,
                              text: text
+
+  rescue Slack::Web::Api::Errors::SlackError => e
+    # print 'Channel not found'
+    false
   end
 end
