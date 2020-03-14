@@ -34,13 +34,13 @@ class CoreTwitter < Credentials
       end
     end
 
-  # rescue JSON::ParserError => e
-  #   print e.message
-  #   sleep 30
-  #   retry
+  rescue JSON::ParserError => e
+    print e.message
+    sleep 40
+    retry
   rescue Twitter::Streaming::DeletedTweet => e
     p e.message
-    sleep 30
+    sleep 40
     retry
   rescue Twitter::Error::TooManyRequests => e
     sleep e.rate_limit.reset_in + 1
