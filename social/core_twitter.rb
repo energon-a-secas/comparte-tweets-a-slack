@@ -45,5 +45,10 @@ class CoreTwitter < Credentials
   rescue Twitter::Error::TooManyRequests => e
     sleep e.rate_limit.reset_in + 1
     retry
+  # This one is because there are many unknown errors
+  rescue StandardError => e
+    print "WARN: #{e.message}\n"
+    retry
+  end
   end
 end
