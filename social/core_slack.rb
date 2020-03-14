@@ -13,13 +13,13 @@ class CoreSlack < Credentials
   end
 
   def user_content(text, filter = nil)
-    if filter.nil?
-      text.match?(text)
-    else
+    unless filter.nil? || !filter.is_a?(Integer)
       slack_users.each do |u, f|
         @slack.send_direct_message(text, u) if text.match(f[filter])
       end
     end
+  rescue StandardError => e
+    print "User content error: #{e.message}"
   end
 
   def direct_message_id(user)
