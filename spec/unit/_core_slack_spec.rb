@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require './social/core_slack'
 
 describe CoreSlack do
   describe '#send_to_channel' do
