@@ -3,7 +3,6 @@ require './credentials'
 
 # Class for all interactions related to Slack
 class CoreSlack < Credentials
-
   def initialize(token = nil)
     Slack.configure do |config|
       config.token = token.nil? ? slack_token : token
@@ -13,11 +12,21 @@ class CoreSlack < Credentials
     @client ||= Slack::Web::Client.new
   end
 
+  def user_content(text, filter = nil)
+    if filter.nil?
+      text.match?(text)
+    else
+      slack_users.each do |u, f|
+        @slack.send_direct_message(text, u) if text.match(f[filter])
+      end
+    end
+  end
+
   def direct_message_id(user)
     dm = @client.conversations_open users: user
     dm.channel.id
   rescue Slack::Web::Api::Errors::SlackError => e
-    # print 'User not found'
+    print e.message
     false
   end
 
@@ -31,9 +40,8 @@ class CoreSlack < Credentials
                              icon_url: icon_url,
                              username: username,
                              text: text
-
   rescue Slack::Web::Api::Errors::SlackError => e
-    # print 'Channel not found'
+    print e.message
     false
   end
 end

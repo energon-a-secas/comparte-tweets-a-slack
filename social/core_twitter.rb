@@ -12,9 +12,7 @@ class CoreTwitter < Credentials
   def to_slack
     slack = CoreSlack.new
     slack.send_channel_message(@tweet.url)
-    slack_users.each do |u, f|
-      slack.send_direct_message(@tweet.text, u) if @tweet.text.match(f[0])
-    end
+    slack.user_content(@tweet.text, 0)
   end
 
   def share_tweet
