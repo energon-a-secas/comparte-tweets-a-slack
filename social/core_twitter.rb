@@ -50,5 +50,4 @@ class CoreTwitter < Credentials
     print "WARN: #{e.message}\n"
     retry
   end
-  end
 end
