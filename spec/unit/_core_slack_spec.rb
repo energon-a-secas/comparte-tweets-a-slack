@@ -3,7 +3,7 @@ require './social/core_slack'
 describe CoreSlack do
   describe '#send_to_channel' do
     let(:text) { 'RTest' }
-    let(:test_channel) { 'hq-alerts' }
+    let(:test_channel) { 'hq-enerlogs' }
     let(:fake_channel) { 'fake channel' }
     let(:slack) { described_class.new }
 
@@ -28,6 +28,23 @@ describe CoreSlack do
 
     context 'when get id fails' do
       it { expect(slack.direct_message_id(fake_id)).to be false }
+    end
+  end
+
+  describe '#user_content' do
+    let(:text) { 'Did you ever hear the Tragedy of Darth Plagueis the wise?' }
+    let(:ok_filter) { 'of' }
+    let(:good_filter) { 'Plagueis' }
+    let(:bad_filter) { 'Obi wan' }
+    let(:slack) { described_class.new }
+
+    context 'when match succeeds' do
+      it { expect(slack.user_content(text, ok_filter)).equal?(Array) }
+      it { expect(slack.user_content(text, good_filter)).equal?(Array) }
+    end
+
+    context 'when match fails' do
+      it { expect(slack.user_content(text, bad_filter)).to be nil }
     end
   end
 end
