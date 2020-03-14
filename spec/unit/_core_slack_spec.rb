@@ -1,26 +1,28 @@
 require_relative '../spec_helper'
 
-described_class CoreSlack do
+describe CoreSlack do
   before(:all) do
-    @slack = CoreSlack.new
+    @slack = described_class.new
   end
 
-  context 'when get id succeeds' do
-    it { expect(@slack.direct_message_id('j')).equal?(Hash) }
+  describe '#send_to_channel' do
+    context 'when post succeeds' do
+      it { expect(@slack.send_channel_message('RTest', 'hq-enerlogs').ok).to be true }
+      it { expect(@slack.send_channel_message('RTest', 'hq-enerlogs').message.text).to eql 'RTest' }
+    end
+
+    context 'when post fails' do
+      it { expect(@slack.send_channel_message('RTest', 'fake channel')).to be false }
+    end
   end
 
-  context 'when get id fails' do
-    it { expect(@slack.direct_message_id('FAKEID123')).to be false }
-  end
-end
+  describe '#direct_message_id' do
+    context 'when get id succeeds' do
+      it { expect(@slack.direct_message_id('j')).equal?(Hash) }
+    end
 
-describe '#send_to_channel' do
-  context 'when post succeeds' do
-    it { expect(CoreSlack.new.send_channel_message('RTest', 'hq-enerlogs').ok).to be true }
-    it { expect(CoreSlack.new.send_channel_message('RTest', 'hq-enerlogs').message.text).to eql 'RTest' }
-  end
-
-  context 'when post fails' do
-    it { expect(CoreSlack.new.send_channel_message('RTest', 'fake channel')).to be false }
+    context 'when get id fails' do
+      it { expect(@slack.direct_message_id('FAKEID123')).to be false }
+    end
   end
 end
