@@ -7,7 +7,14 @@ class Pathfinder < Credentials
     @accounts = twitter_follow
   end
 
+  # I just wanna use multiple faces
+  def send_notification(text = '?', image = 'https://i.imgur.com/gadkLJn.png', channel = 'hq-enerlogs')
+    slack = CoreSlack.new
+    slack.send_channel_message(text, channel, image)
+  end
+
   def follow
+    send_notification('Zipline deployed', 'https://i.imgur.com/ABKU5iv.png')
     threads = []
     @accounts.each do |account, _p|
       threads << Thread.new do
@@ -17,7 +24,8 @@ class Pathfinder < Credentials
     end
     threads.each(&:join)
   rescue SignalException => e
-    p e
+    p e.message
+    send_notification('Bye', 'https://i.imgur.com/FY34y2i.png')
   end
 end
 
