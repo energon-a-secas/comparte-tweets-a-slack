@@ -1,4 +1,6 @@
+ruby '2.6.5'
+
 source 'https://rubygems.org' do
-  gem 'slack-ruby-client'
-  gem 'twitter'
+  gem 'slack-ruby-client', "~> 0.14.5"
+  gem 'twitter', "~> 7.0.0"
 end
