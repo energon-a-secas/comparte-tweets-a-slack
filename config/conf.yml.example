@@ -14,7 +14,7 @@ twitter:
 slack:
   config:
     name: "Pathfinder"
-    icon: "https://i.imgur.com/ABKU5iv.png"
+    icon: "https://i.imgur.com/ABKU5iv.png" # sad: https://i.imgur.com/FY34y2i.png not found: https://i.imgur.com/jV3M6Yx.png doubt: https://i.imgur.com/gadkLJn.png
     channel: "#hq-alerts"
   tokens:
     prod: ""
