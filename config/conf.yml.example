@@ -2,9 +2,9 @@
 twitter:
   config:
     follow:
-      account-id-1:
+      73459349:
         - "/(.*)/"
-      account-id-2:
+      1187606581363531776:
         - "/(.*)/"
     tokens:
       consumer_key: ""
