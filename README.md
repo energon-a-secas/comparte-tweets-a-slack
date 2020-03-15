@@ -22,32 +22,32 @@ Con esto ya tienes lo suficiente para ejecutar los scripts pero antes de eso, ne
 Configuración
 ----
 
-TODO
+Siguiendo el formato del ejemplo `./config/conf.yml.example`, tendrás que crear en la misma ruta un archivo llamado `conf.yml` el cual contendrá tanto las credenciales como configuraciones necesarias para funcionar. 
 
+Para facilitar la explicación de que debe ir en cada campo, se seguirá el orden del ejemplo ya mencionado.
 
-```
----
-twitter:
-  config:
-    follow:
-      73459349:
-        - "/(.*)/"
-      1187606581363531776:
-        - "/(.*)/"
-    tokens:
-      consumer_key: ""
-      consumer_secret: ""
-      access_token: ""
-      access_token_secret: ""
-slack:
-  config:
-    name: "Pathfinder"
-    icon: "https://i.imgur.com/ABKU5iv.png" # sad: https://i.imgur.com/FY34y2i.png not found: https://i.imgur.com/jV3M6Yx.png doubt: https://i.imgur.com/gadkLJn.png
-    channel: "#hq-alerts"
-  tokens:
-    prod: ""
-  users:
-    user-id-1:
-      - "(L1|L5)"
+### Twitter
 
-```
+#### Accounts
+El primer campo es el ID de la cuenta de Twitter, dentro de estos se encuentra un listado, siendo el primer elemento lo que espera incluir, por defecto, todo.
+
+Se utiliza un máximo de dos cuentas debido a los errores generados por los limites de consultas impuestos por la API de Twitter.
+#### Tokens
+Los cuatro campos corresponden a credenciales necesarias para utilizar la API de Twitter. 
+
+Para obtenerlas tendrás que crear una [cuenta de desarrollador](https://developer.twitter.com/en/docs/basics/developer-portal/overview) y asociarle una [aplicación](https://developer.twitter.com/en/docs/basics/apps/overview). La solicitud no es difícil, solamente requieres de paciencia, justificar el uso de tu "posible" aplicación, finalmente aceptando los términos y condiciones de Twitter. 
+
+### Slack
+
+#### Config
+
+Estos campos influyen en la publicación de mensajes en Slack, de la siguiente forma:
+- name: nombre del (bot|integración).
+- icon: imagen a partir de una URL del (bot|integración).
+- channel: canal donde se publicará todo a menos que se pase como argumento al método correspondiente.
+
+#### Users
+El primer campo es la ID de Slack del usuario seguido de una lista con sus filtros.
+
+#### Tokens
+Solamente requiere de una credencial para utilizar la API de Slack. Para obtenerla puedes solicitar un token de hubot y estarás al otro lado.
