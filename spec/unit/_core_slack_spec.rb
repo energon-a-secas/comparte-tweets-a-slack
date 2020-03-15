@@ -3,7 +3,7 @@ require './social/core_slack'
 describe CoreSlack do
   describe '#send_to_channel' do
     let(:text) { 'RTest' }
-    let(:test_channel) { 'hq-enerlogs' }
+    let(:test_channel) { 'hq-development-logs' }
     let(:fake_channel) { 'fake channel' }
     let(:slack) { described_class.new }
 

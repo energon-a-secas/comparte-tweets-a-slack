@@ -8,7 +8,7 @@ class Pathfinder < Credentials
   end
 
   # I just wanna use multiple faces
-  def send_notification(text = '?', image = 'https://i.imgur.com/gadkLJn.png', channel = 'hq-enerlogs')
+  def send_notification(text = '?', image = 'https://i.imgur.com/gadkLJn.png', channel = 'hq-development-logs')
     slack = CoreSlack.new
     slack.send_channel_message(text, channel, image)
   end
