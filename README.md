@@ -3,7 +3,7 @@ TWEET 🐁
 
 ![This software is Blessed](https://img.shields.io/badge/blessed-100%25-770493.svg)
 
-Para quienes deben utilizar el metro y no tienen tiempo (ni ganas) de revisar constantemente las cuentas de twitter de [@metrodesantiago](https://twitter.com/metrodesantiago) y [@TCC_oficial_](https://twitter.com/TCC_oficial_) para detectar oportunamente algún problema en el transporte. Con estos scripts pegados con amor podrás monitorear los tweets de ambas cuentas, compartirlos a Slack y permitir el enviar notificaciones directas a usuarios según sus filtros definidos dentro del YAML.  
+Para quienes deben utilizar el metro y no tienen tiempo (ni ganas) de revisar constantemente las cuentas de twitter de [@metrodesantiago](https://twitter.com/metrodesantiago) y [@TCC_oficial_](https://twitter.com/TCC_oficial_) para detectar oportunamente algún problema en el transporte. Con estos scripts pegados con amor podrán monitorear los tweets de ambas cuentas, compartirlos a Slack y permitir el enviar notificaciones directas a usuarios según sus filtros definidos dentro del YAML.  
 
 Instalación
 ----
