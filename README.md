@@ -7,17 +7,17 @@ Para quienes deben utilizar el metro y no tienen tiempo (ni ganas) de revisar co
 
 Instalación
 ----
-Teniendo la versión 2.6.5 de ruby instalada, deberás instalar la gema de bundler que se encargará de resolver las dependencias.
+Teniendo la versión 2.6.5 de Ruby instalada, deberás utilizar la gema 'bundler' que se encargará de resolver las dependencias definidas en el Gemfile.
 ```
 gem install bundler
 ```
 
-Ya instalada, ejecuta:
+Con eso listo, ejecuta dentro del directorio:
 ```
 bundler install
 ```
 
-Te instalará las versiones especificadas dentro del Gemfile. Con eso ya podrás ejecutar los scripts. Pero antes deberás realizar la configuración.
+Con esto ya tienes lo suficiente para ejecutar los scripts pero antes de eso, necesitaras crear la configuración con los tokens e información adecuada.
 
 Configuración
 ----
