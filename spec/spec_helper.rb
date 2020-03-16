@@ -1,4 +1,1 @@
-require 'yaml'
-
-class DummyClass
-end
+require './social/core_slack'

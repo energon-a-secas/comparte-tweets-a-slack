@@ -8,9 +8,12 @@ class Credentials
     exit
   end
 
-  def slack_token
+  def slack_set_config
     credentials = load
-    credentials['slack']['tokens']['prod']
+    @bot_token = credentials['slack']['tokens']['prod']
+    @bot_name = credentials['slack']['config']['name']
+    @bot_icon = credentials['slack']['config']['icon']
+    @bot_channel = credentials['slack']['config']['channel']
   end
 
   def slack_users

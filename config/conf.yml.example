@@ -2,9 +2,9 @@
 twitter:
   config:
     follow:
-      account-id-1:
+      73459349:
         - "/(.*)/"
-      account-id-2:
+      1187606581363531776:
         - "/(.*)/"
     tokens:
       consumer_key: ""
@@ -13,8 +13,8 @@ twitter:
       access_token_secret: ""
 slack:
   config:
-    name: "Pathfinder"
-    emoji: "https://i.imgur.com/btEyTkf.png"
+    name: "PATHFINDER"
+    icon: "https://i.imgur.com/ABKU5iv.png" # sad: https://i.imgur.com/FY34y2i.png not found: https://i.imgur.com/jV3M6Yx.png doubt: https://i.imgur.com/gadkLJn.png
     channel: "#hq-alerts"
   tokens:
     prod: ""

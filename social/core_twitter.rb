@@ -12,9 +12,7 @@ class CoreTwitter < Credentials
   def to_slack
     slack = CoreSlack.new
     slack.send_channel_message(@tweet.url)
-    slack_users.each do |u, f|
-      slack.send_direct_message(@tweet.text, u) if @tweet.text.match(f[0])
-    end
+    slack.user_content(@tweet.text, 0)
   end
 
   def share_tweet
@@ -36,16 +34,20 @@ class CoreTwitter < Credentials
       end
     end
 
-  # rescue JSON::ParserError => e
-  #   print e.message
-  #   sleep 30
-  #   retry
+  rescue JSON::ParserError => e
+    print e.message
+    sleep 40
+    retry
   rescue Twitter::Streaming::DeletedTweet => e
     p e.message
-    sleep 30
+    sleep 40
     retry
   rescue Twitter::Error::TooManyRequests => e
     sleep e.rate_limit.reset_in + 1
+    retry
+  # This one is because there are many unknown errors
+  rescue StandardError => e
+    print "WARN: #{e.message}\n"
     retry
   end
 end
