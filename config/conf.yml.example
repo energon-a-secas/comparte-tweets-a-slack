@@ -1,7 +1,7 @@
 ---
 twitter:
   config:
-    follow:
+    accounts:
       73459349:
         - "/(.*)/"
       1187606581363531776:
