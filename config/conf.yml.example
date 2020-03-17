@@ -7,17 +7,17 @@ twitter:
       1187606581363531776:
         - "/(.*)/"
     tokens:
-      consumer_key: ""
-      consumer_secret: ""
-      access_token: ""
-      access_token_secret: ""
+      consumer_key:
+      consumer_secret:
+      access_token:
+      access_token_secret:
 slack:
   config:
     name: "PATHFINDER"
     icon: "https://i.imgur.com/ABKU5iv.png" # sad: https://i.imgur.com/FY34y2i.png not found: https://i.imgur.com/jV3M6Yx.png doubt: https://i.imgur.com/gadkLJn.png
     channel: "#hq-alerts"
   tokens:
-    prod: ""
+    prod:
   users:
-      user-id-1:
+      UR0KGQUQK:
         - "(L1|L5)"
