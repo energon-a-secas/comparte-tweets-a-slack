@@ -3,7 +3,7 @@ twitter:
   config:
     accounts:
       73459349:
-        - "/(.*)/"
+        - "(estado|jornada|cerrada|estaci[oó]n|disturbio|habilitad[ao]|restablece|manifestaciones|servicio|disponible|v[ií]a|detenid[ao])"
       1187606581363531776:
         - "/(.*)/"
     tokens:
