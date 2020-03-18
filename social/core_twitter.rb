@@ -24,16 +24,18 @@ class CoreTwitter < Credentials
     end
   end
 
-  def streaming(account, pattern = '(.*)', filter = '^(RT @|@)')
+  def check_tweet(text, pattern, filter = '^(RT @|@)')
+    text.match(/#{pattern}/i) && text.match(filter).nil? ? true : false
+  end
+
+  def streaming(account, pattern)
     puts "Reading tweets from #{account}"
     @client.filter(follow: account) do |tweet|
-      text = tweet.text
-      if tweet.user.id == account.to_i && text.match(pattern) && text.match(filter).nil?
+      if tweet.user.id == account.to_i && check_tweet(tweet.text, pattern)
         @tweet = tweet
         share_tweet
       end
     end
-
   rescue JSON::ParserError => e
     print e.message
     sleep 40
