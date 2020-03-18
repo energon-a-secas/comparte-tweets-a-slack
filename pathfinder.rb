@@ -16,10 +16,11 @@ class Pathfinder < Credentials
   def follow
     send_notification('Zipline deployed', 'https://i.imgur.com/ABKU5iv.png')
     threads = []
-    @accounts.each do |account, _p|
+    @accounts.each do |account, f|
+      filter = f[0] || '(.*)'
       threads << Thread.new do
         t = CoreTwitter.new
-        t.streaming(account)
+        t.streaming(account, filter)
       end
     end
     threads.each(&:join)
